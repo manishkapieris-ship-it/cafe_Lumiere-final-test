@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Café Lumière — Menu</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+  <div class="logo">
+    <img src="images/logo.png" alt="logo" class="logo-img">
+    <span class="brand">Café Lumière</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="booking.html" class="nav-link">Booking</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+  </nav>
+</header>
+
+
+  <div class="page-wrap">
+    <section class="menu-section">
+      <h2>☕ Coffee Series</h2>
+      <div class="menu-grid" id="coffee-list">
+        <!-- example coffee cards (note: add class coffee-btn to open modal) -->
+        <article class="menu-card" data-id="americano" data-name="Americano" data-price="500" data-img="images/americano.jpg">
+          <img src="images/americano.jpg" alt="Americano">
+          <h3>Americano</h3>
+          <p>Smooth espresso with hot water for a bold taste.</p>
+          <div class="price">Rs.500</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="cappuccino" data-name="Cappuccino" data-price="360" data-img="images/cappuccino.jpg">
+          <img src="images/cappuccino.jpg" alt="Cappuccino">
+          <h3>Cappuccino</h3>
+          <p>Perfect balance of espresso, milk, and foam.</p>
+          <div class="price">Rs.360</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="espresso" data-name="Espresso" data-price="780" data-img="images/espresso.jpg">
+          <img src="images/espresso.jpg" alt="Espresso">
+          <h3>Espresso</h3>
+          <p>Bold, aromatic single shot.</p>
+          <div class="price">Rs.780</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="mocha" data-name="Mocha" data-price="620" data-img="images/mocha.jpg">
+          <img src="images/mocha.jpg" alt="Mocha">
+          <h3>Mocha</h3>
+          <p>Chocolate meets espresso — smooth & comforting.</p>
+          <div class="price">Rs.620</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="coldbrew" data-name="Cold Brew" data-price="600" data-img="images/coldbrew.jpg">
+          <img src="images/coldbrew.jpg" alt="Cold Brew">
+          <h3>Cold Brew</h3>
+          <p>Slow-brewed, smooth and refreshing.</p>
+          <div class="price">Rs.600</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="affogato" data-name="Affogato" data-price="480" data-img="images/affogato.jpg">
+          <img src="images/affogato.jpg" alt="Affogato">
+          <h3>Affogato</h3>
+          <p>Vanilla ice cream drowned in hot espresso.</p>
+          <div class="price">Rs.480</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="flatwhite" data-name="Flat White" data-price="550" data-img="images/flatwhite.jpg">
+          <img src="images/flatwhite.jpg" alt="Flat White">
+          <h3>Flat White</h3>
+          <p>Velvety microfoam and rich espresso blend.</p>
+          <div class="price">Rs.550</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="macchiato" data-name="Macchiato" data-price="510" data-img="images/macchiato.jpg">
+          <img src="images/macchiato.jpg" alt="Macchiato">
+          <h3>Macchiato</h3>
+          <p>Espresso with a touch of milk foam.</p>
+          <div class="price">Rs.510</div>
+          <button class="add-cart coffee-btn">Add to Cart</button>
+        </article>
+      </div>
+
+      <h2 style="margin-top:36px">🍰 Bakery Series</h2>
+      <div class="menu-grid" id="bakery-list">
+        <!-- bakery cards: quick add (no modal) -->
+        <article class="menu-card" data-id="croissant" data-name="Croissant" data-price="250" data-img="images/croissant.jpg">
+          <img src="images/croissant.jpg" alt="Croissant">
+          <h3>Croissant</h3>
+          <p>Flaky, buttery layers baked to golden perfection.</p>
+          <div class="price">Rs.250</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="muffin" data-name="Blueberry Muffin" data-price="380" data-img="images/muffin.jpg">
+          <img src="images/muffin.jpg" alt="Muffin">
+          <h3>Blueberry Muffin</h3>
+          <p>Soft and moist muffin bursting with blueberries.</p>
+          <div class="price">Rs.380</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="brownie" data-name="Chocolate Brownie" data-price="480" data-img="images/brownie.jpg">
+          <img src="images/brownie.jpg" alt="Brownie">
+          <h3>Chocolate Brownie</h3>
+          <p>Rich chocolate dessert — soft and gooey inside.</p>
+          <div class="price">Rs.480</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="cheesecake" data-name="Cheesecake" data-price="480" data-img="images/cheesecake.jpg">
+          <img src="images/cheesecake.jpg" alt="Cheesecake">
+          <h3>Cheesecake</h3>
+          <p>Creamy, smooth, and baked to perfection.</p>
+          <div class="price">Rs.480</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <!-- 🆕 Added bakery items -->
+        <article class="menu-card" data-id="cookie" data-name="Chocolate Chip Cookie" data-price="360" data-img="images/cookie.jpg">
+          <img src="images/cookie.jpg" alt="Cookie">
+          <h3>Chocolate Chip Cookie</h3>
+          <p>Chewy cookie filled with melty chocolate chips.</p>
+          <div class="price">Rs.360</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="donut" data-name="Chocolate Donut" data-price="320" data-img="images/donut.jpg">
+          <img src="images/donut.jpg" alt="Donut">
+          <h3>Chocolate Donut</h3>
+          <p>Soft donut coated with rich chocolate glaze.</p>
+          <div class="price">Rs.320</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="cinnamonroll" data-name="Cinnamon Roll" data-price="390" data-img="images/cinnamonroll.jpg">
+          <img src="images/cinnamonroll.jpg" alt="Cinnamon Roll">
+          <h3>Cinnamon Roll</h3>
+          <p>Sweet dough swirled with cinnamon and glaze.</p>
+          <div class="price">Rs.390</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+
+        <article class="menu-card" data-id="applepie" data-name="Apple Pie" data-price="420" data-img="images/applepie.jpg">
+          <img src="images/applepie.jpg" alt="Apple Pie">
+          <h3>Apple Pie</h3>
+          <p>Classic pie filled with warm apple-cinnamon goodness.</p>
+          <div class="price">Rs.420</div>
+          <button class="add-cart">Add to Cart</button>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- Coffee Customization Modal -->
+  <div id="coffeeModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <span class="close">&times;</span>
+      <h2 id="modal-title">Customize Your Coffee</h2>
+      <img id="modal-image" src="" alt="coffee" class="modal-img">
+      <div class="size-selector">
+        <h4 style="text-align:center;color:var(--muted)">Choose Size</h4>
+        <div class="sizes">
+          <button class="size-btn" data-size="S">S</button>
+          <button class="size-btn active" data-size="M">M</button>
+          <button class="size-btn" data-size="L">L</button>
+        </div>
+      </div>
+
+      <div class="toppings">
+        <h4 style="color:var(--muted)">Toppings</h4>
+        <div class="topping-item">
+          <span>Sugar</span>
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="count">3</span>
+            <button class="increase">+</button>
+          </div>
+        </div>
+        <div class="topping-item">
+          <span>Brown Sugar</span>
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="count">0</span>
+            <button class="increase">+</button>
+          </div>
+        </div>
+        <div class="topping-item">
+          <span>Cocoa</span>
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="count">0</span>
+            <button class="increase">+</button>
+          </div>
+        </div>
+        <div class="topping-item">
+          <span>Ice</span>
+          <div class="quantity">
+            <button class="decrease">-</button>
+            <span class="count">2</span>
+            <button class="increase">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="total"><h3>Total: <span id="total-price">$5.00</span></h3></div>
+      <button id="confirm-add" class="confirm-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Added</div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

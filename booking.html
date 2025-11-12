@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Lumière — Booking</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="navbar">
+  <div class="logo">
+    <img src="images/logo.png" alt="logo" class="logo-img">
+    <span class="brand">Café Lumière</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="booking.html" class="nav-link">Booking</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+  </nav>
+</header>
+
+  <section class="booking-section">
+    <div class="booking-container">
+      <h2>Reserve Your Table or Workshop</h2>
+      <p class="subtitle">Experience the best coffee moments with us.</p>
+
+      <form id="bookingForm" class="booking-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guests">Number of Guests</label>
+          <input type="number" id="guests" name="guests" required min="1" max="20" value="1">
+        </div>
+
+        <div class="form-group">
+          <label for="message">Special Requests</label>
+          <textarea id="message" name="message" rows="3" placeholder="Add any details..."></textarea>
+        </div>
+
+        <button type="submit" class="book-btn">Book Now</button>
+      </form>
+
+      <p id="confirmationMessage" class="confirmation-message"></p>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

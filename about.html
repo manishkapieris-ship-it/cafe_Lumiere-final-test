@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Café Lumière</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Basic setup */
+    body.about-page {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0e0d0c;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-weight: 600;
+      color: #e3b97e;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.2rem;
+    }
+
+    .navbar .logo img {
+      height: 35px;
+      width: 35px;
+    }
+
+    .navbar nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: 0.3s;
+    }
+
+    .navbar nav a:hover,
+    .navbar nav a.active {
+      color: #e3b97e;
+    }
+
+    /* About hero section */
+    .about-hero {
+      position: relative;
+      background: url('images/about.jpg') center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .about-hero .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 12px;
+      color: #f1f1f1;
+    }
+
+    .about-content h1 {
+      color: #e3b97e;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    /* Why Choose Us */
+    .choose-us {
+      padding: 60px 20px;
+      background: #141210;
+      text-align: center;
+    }
+
+    .choose-us h2 {
+      color: #e3b97e;
+      margin-bottom: 40px;
+    }
+
+    .choose-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .choose-item {
+      max-width: 250px;
+      background: #1b1a18;
+      padding: 25px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .choose-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .choose-item img {
+      height: 60px;
+      margin-bottom: 15px;
+    }
+
+    .choose-item h3 {
+      color: #e3b97e;
+      margin-bottom: 10px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: #0f0e0d;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .testimonials h2 {
+      color: #e3b97e;
+      margin-bottom: 40px;
+    }
+
+    .test-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .test-item {
+      background: #1c1b1a;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 300px;
+      color: #ccc;
+      font-style: italic;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .test-item span {
+      display: block;
+      margin-top: 15px;
+      color: #e3b97e;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="about-page">
+
+ <header class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="logo" class="logo-img" />
+      <span class="brand">Café Lumière</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="booking.html" class="nav-link">Booking</a>
+      <a href="cart.html" class="nav-link">Cart</a>
+    </nav>
+  </header>
+
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div class="overlay"></div>
+    <div class="about-content">
+      <h1>About Café Lumière</h1>
+      <p>
+        Founded in 2010 in the heart of the historic city of Galle, Café Lumière has become a beloved destination for coffee enthusiasts and food lovers alike. We pride ourselves on crafting exceptional artisan coffee, pairing it with delicious pastries, and delivering a warm, personalized experience to every guest who walks through our doors.
+      </p>
+      <p>
+        Our team of expert baristas is passionate about the art of coffee — from sourcing premium beans to perfecting every brew. Beyond serving coffee, we believe in sharing our love for the craft through barista training workshops that inspire and educate the next generation of coffee makers.
+      </p>
+      <p>
+        As we continue to grow, Café Lumière is stepping into the digital age with an all-new web application designed to connect with customers beyond Galle. Through our online platform, you can now explore our menu, book workshops, and place orders with ease — all from the comfort of your home.
+      </p>
+      <p>
+        At Café Lumière, every cup tells a story — of passion, craftsmanship, and community. Join us on our journey as we blend tradition with innovation to bring the true artisan coffee experience to you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="choose-us">
+    <h2>Why Choose Us?</h2>
+    <div class="choose-container">
+      <div class="choose-item">
+        <img src="images/sustainably-icon.png" alt="Sustainably Sourced">
+        <h3>Sustainably Sourced</h3>
+        <p>We partner with ethical farms using sustainable growing methods and fair-trade practices.</p>
+      </div>
+      <div class="choose-item">
+        <img src="images/freshly-icon.png" alt="Freshly Roasted">
+        <h3>Freshly Roasted</h3>
+        <p>Our beans are roasted in small batches to ensure maximum freshness and flavor.</p>
+      </div>
+      <div class="choose-item">
+        <img src="images/expertly-icon.png" alt="Expertly Crafted">
+        <h3>Expertly Crafted</h3>
+        <p>Each cup is brewed to perfection, highlighting the best qualities of every bean.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <div class="test-container">
+      <div class="test-item">
+        <p>“The House Blend is my go-to every morning! Smooth, never bitter — the perfect way to start my day.”</p>
+        <span>— Emily R.</span>
+      </div>
+      <div class="test-item">
+        <p>“I love the espresso blend! It’s bold but not overpowering, and it makes the best lattes.”</p>
+        <span>— James T.</span>
+      </div>
+      <div class="test-item">
+        <p>“The subscription service is a game-changer! Fresh coffee delivered right to my door.”</p>
+        <span>— Sarah M.</span>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

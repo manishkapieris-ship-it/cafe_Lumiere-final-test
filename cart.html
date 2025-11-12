@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Café Lumière — Cart</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+ <header class="navbar">
+  <div class="logo">
+    <img src="images/logo.png" alt="logo" class="logo-img">
+    <span class="brand">Café Lumière</span>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="menu.html" class="nav-link">Menu</a>
+    <a href="booking.html" class="nav-link">Booking</a>
+    <a href="cart.html" class="nav-link">Cart</a>
+  </nav>
+</header>
+
+
+  <div class="page-wrap">
+    <div class="cart-panel">
+      <h2 style="text-align:center;color:var(--accent)">Your Cart</h2>
+      <div id="cart-items"></div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="cart-total">Total: <span id="cart-total">Rs.0</span></div>
+      </div>
+
+      <div id="empty-message" style="text-align:center;color:var(--muted);margin:18px 0">Your cart is currently empty ☕</div>
+
+      <div class="checkout-panel">
+        <h3>Checkout</h3>
+        <div class="radio-group">
+          <label><input type="radio" name="orderType" value="takeaway" checked> Take Away</label>
+          <label><input type="radio" name="orderType" value="delivery"> Delivery</label>
+        </div>
+
+        <div id="delivery-details" style="display:none;margin-top:12px;">
+          <input id="delivery-address" class="input" placeholder="Delivery address">
+          <input id="delivery-contact" class="input" placeholder="Contact number">
+        </div>
+
+        <div style="margin-top:12px;">
+          <h4 style="color:var(--muted);margin:6px 0">Payment Method</h4>
+          <div class="radio-group">
+            <label><input type="radio" name="paymentMethod" value="cash" checked> Cash on Delivery</label>
+            <label><input type="radio" name="paymentMethod" value="online"> Online Payment</label>
+          </div>
+        </div>
+
+        <div id="card-details" style="display:none;margin-top:12px;">
+          <input id="card-name" class="input pay-input" placeholder="Cardholder name">
+          <input id="card-number" class="input pay-input" placeholder="Card number">
+          <div style="display:flex;gap:8px">
+            <input id="card-expiry" class="input" placeholder="MM/YY">
+            <input id="card-cvv" class="input" placeholder="CVV">
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button id="confirm-order" class="confirm-checkout">Confirm Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Online Pay overlay (uses image as background to get look) -->
+  <div class="pay-overlay" aria-hidden="true">
+    <div class="pay-card">
+      <h4>Checkout — Online Payment</h4>
+      <input class="pay-input" placeholder="Cardholder name">
+      <input class="pay-input" placeholder="Card number">
+      <div style="display:flex;gap:8px">
+        <input class="pay-input" placeholder="MM/YY">
+        <input class="pay-input" placeholder="CVV">
+      </div>
+      <div style="margin:12px 0;">
+        <div style="display:flex;justify-content:space-between;color:var(--muted)">
+          <span>Balance:</span><strong>Rs. ...</strong>
+        </div>
+      </div>
+      <button class="buy-btn">Buy</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Message</div>
+  <script src="js/main.js"></script>
+</body>
+</html>
