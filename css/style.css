@@ -289,6 +289,37 @@ body.modern-login {
 }
 
 
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5em;
+    margin-right: 10px;
+  }
+}
+
+/* Default: hide the hamburger on large screens */
+.menu-toggle {
+  display: none;
+}
 
 
 
@@ -776,6 +807,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
+  justify-items: center;
 }
 
 .menu-card {
@@ -785,6 +817,10 @@ body {
   text-align: center;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   transition: transform 0.3s ease;
+  width: 230px;
+  min-height: 400px; /* ✅ Makes all cards same height */
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-card:hover {
@@ -807,6 +843,7 @@ body {
   font-size: 14px;
   color: #b8a98b;
   margin: 5px 0 10px;
+  flex-grow: 1; /* ✅ Pushes button to bottom */
 }
 
 .price {
@@ -815,6 +852,7 @@ body {
   margin-bottom: 10px;
 }
 
+/* Keep your button style */
 .add-cart {
   background: #d4a574;
   border: none;
@@ -824,11 +862,14 @@ body {
   cursor: pointer;
   transition: 0.3s;
   font-weight: bold;
+  margin-top: auto; /* ✅ Ensures consistent button placement */
 }
 
 .add-cart:hover {
   background: #fff;
 }
+
+
 
 /* ===== Modal Styling ===== */
 .modal {
@@ -1383,6 +1424,210 @@ body{
   .menu-grid{grid-template-columns:repeat(1,1fr)}
 }
 
+/* Comprehensive Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 10px 15px;
+  }
+  .logo-img {
+    width: 35px;
+    height: 35px;
+  }
+  .brand {
+    font-size: 1rem;
+  }
+  .nav-links a {
+    font-size: 0.9rem;
+    margin-left: 10px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 80px 10px;
+  }
+  .hero-content {
+    padding: 40px 20px;
+    max-width: 100%;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .explore-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Passion Section */
+  .passion-section {
+    padding: 60px 5%;
+  }
+  .passion-section h2 {
+    font-size: 1.8rem;
+  }
+  .passion-section p {
+    font-size: 0.95rem;
+  }
+
+  /* Favorites Section */
+  .favorites-section {
+    padding: 60px 5%;
+  }
+  .favorites-section h2 {
+    font-size: 1.8rem;
+  }
+  .fav-card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .fav-card img {
+    height: 150px;
+  }
+
+  /* Visit Section */
+  .visit-section {
+    padding: 60px 5%;
+  }
+  .visit-section h2 {
+    font-size: 1.8rem;
+  }
+  .visit-section p {
+    font-size: 0.95rem;
+  }
+  .visit-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Menu Grid */
+  .menu-section h2 {
+    font-size: 1.8rem;
+  }
+  .menu-card {
+    width: 100%;
+    min-height: 350px;
+  }
+  .menu-card img {
+    height: 120px;
+  }
+  .menu-card h3 {
+    font-size: 1rem;
+  }
+  .menu-card p {
+    font-size: 0.85rem;
+  }
+  .add-cart {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+  .modal-img {
+    width: 80px;
+    height: 80px;
+  }
+  .size-btn {
+    padding: 6px 10px;
+  }
+  .confirm-btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  /* Cart */
+  .cart-container {
+    margin: 40px 10px;
+    padding: 15px;
+  }
+  .cart-item img {
+    width: 60px;
+    height: 60px;
+  }
+  .cart-details h4 {
+    font-size: 1rem;
+  }
+  .checkout-panel {
+    padding: 15px;
+  }
+
+  /* Booking */
+  .booking-container {
+    padding: 30px 20px;
+    max-width: 100%;
+  }
+  .booking-container h2 {
+    font-size: 1.8rem;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .book-btn {
+    width: 100%;
+  }
+
+  /* Login */
+  .login-box {
+    width: 95%;
+    padding: 30px 15px;
+  }
+  .login-box h2 {
+    font-size: 1.5rem;
+  }
+  .social-buttons {
+    gap: 10px;
+  }
+  .social {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  .social img {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 30px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+  .passion-section h2,
+  .favorites-section h2,
+  .visit-section h2,
+  .booking-container h2 {
+    font-size: 1.5rem;
+  }
+  .fav-card img,
+  .menu-card img {
+    height: 100px;
+  }
+  .menu-card {
+    min-height: 300px;
+  }
+  .modal-content {
+    padding: 15px;
+  }
+  .login-box {
+    padding: 25px 10px;
+  }
+}
+
 
 /* ===== HOME PAGE BACKGROUND ===== */
 .home-bg {
@@ -1469,4 +1714,42 @@ footer {
   color: #ccc;
   margin-top: 80px;
   padding-bottom: 20px;
+}
+
+
+/* ---------- Default login button style (site-wide / non-login pages) ---------- */
+.login-btn,
+.nav-links a.login-btn {
+  background: #d4a574;      /* warm gold default */
+  color: #241b17;           /* dark text */
+  box-shadow: none;
+  transition: background .2s ease, box-shadow .2s ease;
+}
+
+/* ---------- Login page override: neon green glow ---------- */
+/* Targets only when body has class "login-page" (i.e. login.html) */
+body.login-page .login-btn,
+body.login-page .nav-links a.login-btn {
+  background: #00ff66;                     /* neon green button */
+  color: #111;                             /* dark text inside button */
+  box-shadow: 0 6px 30px rgba(0,255,102,0.35),
+              0 0 8px rgba(0,255,102,0.25) inset;
+  border: 1px solid rgba(0,255,102,0.25);
+}
+
+/* Slight hover effect for login page */
+body.login-page .login-btn:hover,
+body.login-page .nav-links a.login-btn:hover {
+  background: #00e055;
+  box-shadow: 0 10px 40px rgba(0,255,102,0.45),
+              0 0 12px rgba(0,255,102,0.35) inset;
+}
+
+/* If you use a small rounded nav link button, keep it neat */
+.nav-links a.login-btn {
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }

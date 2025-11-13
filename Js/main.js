@@ -23,9 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let basePrice = 0;
     let selectedSize = "M";
 
+    // Helper function to add event listeners for both click and touch
+    const addEvent = (element, eventType, handler) => {
+      element.addEventListener(eventType, handler);
+      if ('ontouchstart' in window) {
+        element.addEventListener('touchstart', handler, { passive: true });
+      }
+    };
+
     // safely wire buttons (if any)
     coffeeButtons.forEach(btn => {
-      btn.addEventListener("click", (e) => {
+      addEvent(btn, "click", (e) => {
         const card = e.target.closest(".menu-card");
         if (!card) return;
         const name = card.dataset.name || "Coffee";
@@ -334,3 +342,111 @@ document.querySelector("#loginForm").addEventListener("submit", function(e) {
     alert("Invalid email or password!");
   }
 });
+
+
+function guestLogin() {
+  // mark user as guest
+  localStorage.setItem("loggedIn", "guest");
+  localStorage.setItem("loginMessage", "Welcome, guest! You can browse and order freely.");
+  
+  // redirect to homepage or menu
+  window.location.href = "index.html"; 
+}
+
+/* ======================================================
+   🔒 LOGIN + ACCESS CONTROL LOGIC
+   Handles login, guest login, and page protection
+====================================================== */
+
+// --- Normal login ---
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.querySelector("#loginForm");
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = loginForm.querySelector("input[type='email']").value.trim();
+      const password = loginForm.querySelector("input[type='password']").value.trim();
+
+      if (!email || !password) {
+        alert("Please enter your email and password!");
+        return;
+      }
+
+      // Simple fake login
+      localStorage.setItem("loggedIn", "true");
+      localStorage.removeItem("cameFromMenu");
+      localStorage.removeItem("cameFromReserve");
+      localStorage.removeItem("cameFromCart");
+
+      // Redirect back to where user came from
+      if (localStorage.getItem("cameFromMenu")) {
+        localStorage.removeItem("cameFromMenu");
+        window.location.href = "menu.html";
+      } else if (localStorage.getItem("cameFromReserve")) {
+        localStorage.removeItem("cameFromReserve");
+        window.location.href = "booking.html";
+      } else if (localStorage.getItem("cameFromCart")) {
+        localStorage.removeItem("cameFromCart");
+        window.location.href = "cart.html";
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  }
+
+  // --- Guest login ---
+  window.guestLogin = function () {
+    sessionStorage.setItem("loggedIn", "guest");
+    const hour = new Date().getHours();
+    const greeting =
+      hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
+    sessionStorage.setItem("greetingMsg", `${greeting}, welcome guest!`);
+    window.location.href = "index.html";
+  };
+
+  // --- Protect sensitive pages ---
+  const protectedPages = ["menu.html", "cart.html", "booking.html"];
+  const currentPage = window.location.pathname.split("/").pop();
+  if (protectedPages.includes(currentPage)) {
+    const loggedIn = localStorage.getItem("loggedIn") === "true";
+    const guest = sessionStorage.getItem("loggedIn") === "guest";
+
+    if (!loggedIn && !guest) {
+      // Determine where they came from
+      if (currentPage === "menu.html") localStorage.setItem("cameFromMenu", "true");
+      if (currentPage === "cart.html") localStorage.setItem("cameFromCart", "true");
+      if (currentPage === "booking.html") localStorage.setItem("cameFromReserve", "true");
+
+      localStorage.setItem("loginMessage", "⚠️ Please log in before placing an order!");
+      window.location.href = "login.html";
+    }
+  }
+
+  // --- Show pop-up message after redirect ---
+  const msgText = localStorage.getItem("loginMessage");
+  if (msgText) {
+    const box = document.createElement("div");
+    box.textContent = msgText;
+    Object.assign(box.style, {
+      position: "fixed",
+      top: "20px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      background: "rgba(0,255,100,0.15)",
+      color: "#00ff66",
+      padding: "12px 25px",
+      borderRadius: "10px",
+      fontWeight: "600",
+      zIndex: "9999",
+      backdropFilter: "blur(8px)",
+    });
+    document.body.appendChild(box);
+    setTimeout(() => {
+      box.style.transition = "opacity 0.6s";
+      box.style.opacity = "0";
+      setTimeout(() => box.remove(), 600);
+    }, 3000);
+    localStorage.removeItem("loginMessage");
+  }
+});
+

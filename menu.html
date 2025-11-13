@@ -5,28 +5,42 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Café Lumière — Menu</title>
   <link rel="stylesheet" href="css/style.css" />
+
+<script>
+  // block actions unless logged in
+  const loggedIn = localStorage.getItem("loggedIn") === "true";
+  const guestLogged = sessionStorage.getItem("loggedIn") === "guest";
+
+  // if not logged in or guest, go to login page with message
+  if (!loggedIn && !guestLogged) {
+    localStorage.setItem("loginMessage", "⚠️ Please log in before placing an order.");
+    localStorage.setItem("cameFromMenu", window.location.pathname.includes("menu") ? "true" : "");
+    localStorage.setItem("cameFromReserve", window.location.pathname.includes("booking") ? "true" : "");
+    window.location.href = "login.html";
+  }
+</script>
+
 </head>
 <body>
-  <header class="navbar">
-  <div class="logo">
-    <img src="images/logo.png" alt="logo" class="logo-img">
-    <span class="brand">Café Lumière</span>
-  </div>
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="menu.html" class="nav-link">Menu</a>
-    <a href="booking.html" class="nav-link">Booking</a>
-    <a href="cart.html" class="nav-link">Cart</a>
-  </nav>
-</header>
 
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="logo" class="logo-img">
+      <span class="brand">Café Lumière</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="menu.html" class="nav-link active">Menu</a>
+      <a href="booking.html" class="nav-link">Booking</a>
+      <a href="cart.html" class="nav-link">Cart</a>
+    </nav>
+  </header>
 
   <div class="page-wrap">
     <section class="menu-section">
       <h2>☕ Coffee Series</h2>
       <div class="menu-grid" id="coffee-list">
-        <!-- example coffee cards (note: add class coffee-btn to open modal) -->
         <article class="menu-card" data-id="americano" data-name="Americano" data-price="500" data-img="images/americano.jpg">
           <img src="images/americano.jpg" alt="Americano">
           <h3>Americano</h3>
@@ -51,6 +65,7 @@
           <button class="add-cart coffee-btn">Add to Cart</button>
         </article>
 
+        
         <article class="menu-card" data-id="mocha" data-name="Mocha" data-price="620" data-img="images/mocha.jpg">
           <img src="images/mocha.jpg" alt="Mocha">
           <h3>Mocha</h3>
@@ -94,7 +109,6 @@
 
       <h2 style="margin-top:36px">🍰 Bakery Series</h2>
       <div class="menu-grid" id="bakery-list">
-        <!-- bakery cards: quick add (no modal) -->
         <article class="menu-card" data-id="croissant" data-name="Croissant" data-price="250" data-img="images/croissant.jpg">
           <img src="images/croissant.jpg" alt="Croissant">
           <h3>Croissant</h3>
@@ -127,7 +141,6 @@
           <button class="add-cart">Add to Cart</button>
         </article>
 
-        <!-- 🆕 Added bakery items -->
         <article class="menu-card" data-id="cookie" data-name="Chocolate Chip Cookie" data-price="360" data-img="images/cookie.jpg">
           <img src="images/cookie.jpg" alt="Cookie">
           <h3>Chocolate Chip Cookie</h3>
@@ -219,9 +232,31 @@
     </div>
   </div>
 
-  <!-- Toast -->
   <div id="toast" class="toast">Added</div>
 
   <script src="js/main.js"></script>
+
+  <script>
+    // ✅ Allow browsing without login
+    // Redirect only when clicking Add to Cart and not logged in
+    document.addEventListener("DOMContentLoaded", () => {
+      const cartButtons = document.querySelectorAll(".add-cart");
+
+      cartButtons.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+          const isGuest = sessionStorage.getItem("loggedIn") === "guest";
+
+          if (!isLoggedIn && !isGuest) {
+            e.preventDefault();
+            localStorage.setItem("loginMessage", "⚠️ Please log in before placing an order.");
+            localStorage.setItem("cameFromMenu", "true");
+            window.location.href = "login.html";
+            return;
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

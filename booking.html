@@ -5,22 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Café Lumière — Booking</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <script>
+  // block actions unless logged in
+  const loggedIn = localStorage.getItem("loggedIn") === "true";
+  const guestLogged = sessionStorage.getItem("loggedIn") === "guest";
+
+  // if not logged in or guest, go to login page with message
+  if (!loggedIn && !guestLogged) {
+    localStorage.setItem("loginMessage", "⚠️ Please log in before placing an order.");
+    localStorage.setItem("cameFromMenu", window.location.pathname.includes("menu") ? "true" : "");
+    localStorage.setItem("cameFromReserve", window.location.pathname.includes("booking") ? "true" : "");
+    window.location.href = "login.html";
+  }
+</script>
 </head>
 <body>
 
   <header class="navbar">
-  <div class="logo">
-    <img src="images/logo.png" alt="logo" class="logo-img">
-    <span class="brand">Café Lumière</span>
-  </div>
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="menu.html" class="nav-link">Menu</a>
-    <a href="booking.html" class="nav-link">Booking</a>
-    <a href="cart.html" class="nav-link">Cart</a>
-  </nav>
-</header>
+    <div class="logo">
+      <img src="images/logo.png" alt="logo" class="logo-img">
+      <span class="brand">Café Lumière</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="booking.html" class="nav-link active">Booking</a>
+      <a href="cart.html" class="nav-link">Cart</a>
+    </nav>
+  </header>
 
   <section class="booking-section">
     <div class="booking-container">
@@ -73,5 +87,37 @@
   </section>
 
   <script src="js/main.js"></script>
+
+  <script>
+    // ✅ Only check when the user tries to submit the booking form
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // stop normal submission
+
+      const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+      const isGuest = sessionStorage.getItem("loggedIn") === "guest";
+
+      // 🚫 If not logged in or guest — redirect to login
+      if (!isLoggedIn && !isGuest) {
+        localStorage.setItem("loginMessage", "⚠️ Please log in before making a reservation.");
+        localStorage.setItem("cameFromReserve", "true");
+        window.location.href = "login.html";
+        return;
+      }
+
+      // ✅ If logged in, show confirmation
+      const name = document.getElementById("name").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const guests = document.getElementById("guests").value;
+
+      const msg = document.getElementById("confirmationMessage");
+      msg.textContent = `✅ Thank you, ${name}! Your reservation for ${guests} guest(s) on ${date} at ${time} has been confirmed.`;
+      msg.style.color = "#00ff66";
+
+      // Optionally clear the form
+      document.getElementById("bookingForm").reset();
+    });
+  </script>
+
 </body>
 </html>

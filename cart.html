@@ -5,22 +5,36 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Café Lumière — Cart</title>
   <link rel="stylesheet" href="css/style.css" />
+
+  <script>
+  // block actions unless logged in
+  const loggedIn = localStorage.getItem("loggedIn") === "true";
+  const guestLogged = sessionStorage.getItem("loggedIn") === "guest";
+
+  // if not logged in or guest, go to login page with message
+  if (!loggedIn && !guestLogged) {
+    localStorage.setItem("loginMessage", "⚠️ Please log in before placing an order.");
+    localStorage.setItem("cameFromMenu", window.location.pathname.includes("menu") ? "true" : "");
+    localStorage.setItem("cameFromReserve", window.location.pathname.includes("booking") ? "true" : "");
+    window.location.href = "login.html";
+  }
+</script>
 </head>
 <body>
- <header class="navbar">
-  <div class="logo">
-    <img src="images/logo.png" alt="logo" class="logo-img">
-    <span class="brand">Café Lumière</span>
-  </div>
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about.html" class="nav-link">About</a>
-    <a href="menu.html" class="nav-link">Menu</a>
-    <a href="booking.html" class="nav-link">Booking</a>
-    <a href="cart.html" class="nav-link">Cart</a>
-  </nav>
-</header>
 
+  <header class="navbar">
+    <div class="logo">
+      <img src="images/logo.png" alt="logo" class="logo-img">
+      <span class="brand">Café Lumière</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="menu.html" class="nav-link">Menu</a>
+      <a href="booking.html" class="nav-link">Booking</a>
+      <a href="cart.html" class="nav-link active">Cart</a>
+    </nav>
+  </header>
 
   <div class="page-wrap">
     <div class="cart-panel">
@@ -69,7 +83,7 @@
     </div>
   </div>
 
-  <!-- Online Pay overlay (uses image as background to get look) -->
+  <!-- Online Pay overlay -->
   <div class="pay-overlay" aria-hidden="true">
     <div class="pay-card">
       <h4>Checkout — Online Payment</h4>
@@ -89,6 +103,30 @@
   </div>
 
   <div id="toast" class="toast">Message</div>
-  <script src="js/main.js"></script>
+
+
+  <script>
+    // ✅ Only check login when confirming order, not on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const confirmBtn = document.getElementById("confirm-order");
+
+      confirmBtn.addEventListener("click", (e) => {
+        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+        const isGuest = sessionStorage.getItem("loggedIn") === "guest";
+
+        if (!isLoggedIn && !isGuest) {
+          e.preventDefault();
+          localStorage.setItem("loginMessage", "⚠️ Please log in before placing an order.");
+          localStorage.setItem("cameFromMenu", "true");
+          window.location.href = "login.html";
+          return;
+        }
+
+        // else, continue with normal behavior from main.js
+      });
+    });
+  </script>
+
+<script src="js/main.js"></script>
 </body>
 </html>

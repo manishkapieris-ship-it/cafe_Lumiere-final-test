@@ -5,6 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Café Lumière | Home</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===== MOBILE NAVBAR FIX ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        z-index: 100;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 10px 0;
+        font-size: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+      }
+    }
+
+    .login-btn {
+      background: #00ff66;
+      color: #111;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #00cc55;
+    }
+
+  </style>
 </head>
 <body class="home-page">
 
@@ -14,12 +82,21 @@
       <img src="images/logo.png" alt="Café Lumière Logo" class="logo-img">
       <span class="brand">Café Lumière</span>
     </div>
+
+    <!-- Hamburger menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
     <nav class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="menu.html">Menu</a>
       <a href="booking.html">Booking</a>
       <a href="cart.html">Cart</a>
+      <a href="login.html" class="login-btn">Login</a>
     </nav>
   </header>
 
@@ -94,5 +171,54 @@
     <p>© 2025 Café Lumière | Crafted with  and caffeine.</p>
   </footer>
 
-</body>
-</html>
+  <script>
+  function toggleMenu() {
+    document.querySelector(".nav-links").classList.toggle("active");
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    // Check for guest greeting
+    const isGuest = sessionStorage.getItem("loggedIn") === "guest";
+    const greetMsg = sessionStorage.getItem("greetingMsg");
+
+    // Show greeting only once per guest session
+    if (isGuest && greetMsg && !sessionStorage.getItem("alreadyGreeted")) {
+      showGreeting(greetMsg);
+      sessionStorage.setItem("alreadyGreeted", "true");
+    }
+
+    // Optional: Handle normal login greeting (from localStorage)
+    const userGreet = localStorage.getItem("greetingMsg");
+    if (userGreet && !localStorage.getItem("alreadyGreeted")) {
+      showGreeting(userGreet);
+      localStorage.setItem("alreadyGreeted", "true");
+    }
+  });
+
+  function showGreeting(message) {
+    const box = document.createElement("div");
+    box.textContent = message + " — Welcome to Café Lumière!";
+    Object.assign(box.style, {
+      position: "fixed",
+      top: "20px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      background: "rgba(0,255,100,0.15)",
+      color: "#00ff66",
+      padding: "12px 25px",
+      borderRadius: "10px",
+      fontWeight: "600",
+      zIndex: "9999",
+      backdropFilter: "blur(8px)",
+      boxShadow: "0 0 10px rgba(0,255,100,0.5)"
+    });
+
+    document.body.appendChild(box);
+
+    setTimeout(() => {
+      box.style.transition = "opacity 0.8s";
+      box.style.opacity = "0";
+      setTimeout(() => box.remove(), 600);
+    }, 4000);
+  }
+</script>
