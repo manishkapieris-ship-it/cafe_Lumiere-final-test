@@ -63,11 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // close handlers
-    if (closeBtn) closeBtn.addEventListener("click", () => modal.style.display = "none");
-    modal.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
+    if (closeBtn) addEvent(closeBtn, "click", () => modal.style.display = "none");
+    addEvent(modal, "click", (e) => { if (e.target === modal) modal.style.display = "none"; });
 
     // size change
-    sizeBtns.forEach(b => b.addEventListener("click", () => {
+    sizeBtns.forEach(b => addEvent(b, "click", () => {
       sizeBtns.forEach(x => x.classList.remove("active"));
       b.classList.add("active");
       selectedSize = b.dataset.size || "M";
@@ -92,12 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return extra;
     }
 
-    incBtns.forEach(b => b.addEventListener("click", (e) => {
+    incBtns.forEach(b => addEvent(b, "click", (e) => {
       const count = e.target.closest(".quantity").querySelector(".count");
       count.textContent = (parseInt(count.textContent)||0) + 1;
       updateTotalDisplay();
     }));
-    decBtns.forEach(b => b.addEventListener("click", (e) => {
+    decBtns.forEach(b => addEvent(b, "click", (e) => {
       const count = e.target.closest(".quantity").querySelector(".count");
       let cur = parseInt(count.textContent)||0;
       if (cur>0) count.textContent = cur-1;
