@@ -358,41 +358,41 @@ function guestLogin() {
    Handles login, guest login, and page protection
 ====================================================== */
 
-// --- Normal login ---
-document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.querySelector("#loginForm");
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = loginForm.querySelector("input[type='email']").value.trim();
-      const password = loginForm.querySelector("input[type='password']").value.trim();
+  // --- Normal login ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#loginForm");
+    if (loginForm) {
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = loginForm.querySelector("input[type='email']").value.trim();
+        const password = loginForm.querySelector("input[type='password']").value.trim();
 
-      if (!email || !password) {
-        alert("Please enter your email and password!");
-        return;
-      }
+        if (!email || !password) {
+          alert("Please enter your email and password!");
+          return;
+        }
 
-      // Simple fake login
-      localStorage.setItem("loggedIn", "true");
-      localStorage.removeItem("cameFromMenu");
-      localStorage.removeItem("cameFromReserve");
-      localStorage.removeItem("cameFromCart");
-
-      // Redirect back to where user came from
-      if (localStorage.getItem("cameFromMenu")) {
+        // Simple fake login - use sessionStorage for consistency
+        sessionStorage.setItem("loggedIn", "user");
         localStorage.removeItem("cameFromMenu");
-        window.location.href = "menu.html";
-      } else if (localStorage.getItem("cameFromReserve")) {
         localStorage.removeItem("cameFromReserve");
-        window.location.href = "booking.html";
-      } else if (localStorage.getItem("cameFromCart")) {
         localStorage.removeItem("cameFromCart");
-        window.location.href = "cart.html";
-      } else {
-        window.location.href = "index.html";
-      }
-    });
-  }
+
+        // Redirect back to where user came from
+        if (localStorage.getItem("cameFromMenu")) {
+          localStorage.removeItem("cameFromMenu");
+          window.location.href = "menu.html";
+        } else if (localStorage.getItem("cameFromReserve")) {
+          localStorage.removeItem("cameFromReserve");
+          window.location.href = "booking.html";
+        } else if (localStorage.getItem("cameFromCart")) {
+          localStorage.removeItem("cameFromCart");
+          window.location.href = "cart.html";
+        } else {
+          window.location.href = "index.html";
+        }
+      });
+    }
 
   // --- Guest login ---
   window.guestLogin = function () {

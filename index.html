@@ -173,8 +173,26 @@
 
   <script>
   function toggleMenu() {
-    document.querySelector(".nav-links").classList.toggle("active");
+    const navLinks = document.querySelector(".nav-links");
+    navLinks.classList.toggle("active");
   }
+
+  // Close menu when clicking outside or on a link
+  document.addEventListener("click", (e) => {
+    const navLinks = document.querySelector(".nav-links");
+    const menuToggle = document.querySelector(".menu-toggle");
+
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+      navLinks.classList.remove("active");
+    }
+  });
+
+  // Close menu when clicking on nav links
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.querySelector(".nav-links").classList.remove("active");
+    });
+  });
 
   window.addEventListener("DOMContentLoaded", () => {
     // Check for guest greeting
